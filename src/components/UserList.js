@@ -4,6 +4,10 @@ import TextField from "@material-ui/core/TextField";
 import { DefaultApi } from "../api/api";
 import { AppContext } from "../Context";
 
+const searchButtonStyle = {
+  width: "90%",
+};
+
 class UserList extends React.Component {
   static contextType = AppContext;
   headers = { lastName: "Last Name", firstName: "First Name", email: "Email" };
@@ -15,7 +19,7 @@ class UserList extends React.Component {
     new DefaultApi(null, this.context.baseUrl)
       .listUser()
       .then((response) => {
-        if (response.status == 0) {
+        if (response.status === 0) {
           this.setState({ userList: response.data });
         } else {
           this.setState({ errorMessage: response.message });
@@ -31,7 +35,12 @@ class UserList extends React.Component {
     ));
     return (
       <div>
-        <TextField id="outlined-basic" label="Search..." variant="outlined" />
+        <TextField
+          id="outlined-basic"
+          label="Search..."
+          variant="outlined"
+          style={searchButtonStyle}
+        />
         <div className="user-list-display">
           <User user={this.headers} key={this.headers.email} />
           {listUser}
