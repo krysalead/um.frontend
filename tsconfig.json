@@ -6,12 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "extendedDiagnostics": false,
-    "lib": [
-      "es2015",
-      "es6",
-      "es5",
-      "dom"
-    ],
+    "lib": ["es2015", "es6", "es5", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -21,16 +16,13 @@
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react"
   },
-  "include": [
-    "api/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["api/**/*.ts"],
+  "exclude": ["node_modules"],
   "compileOnSave": false
 }
