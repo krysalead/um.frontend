@@ -6,12 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "extendedDiagnostics": false,
-    "lib": [
-      "es2015",
-      "es6",
-      "es5",
-      "dom"
-    ],
+    "lib": ["es2015", "es6", "es5", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -27,11 +22,7 @@
     "jsx": "react",
     "noEmit": true
   },
-  "include": [
-    "api/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["api/**/*.ts", "src/**/*.js"],
+  "exclude": ["node_modules"],
   "compileOnSave": false
 }

@@ -78,5 +78,5 @@ docker build -t frontend .
 Run in
 
 ```
-docker run -it --rm -v ${PWD}:/app -p 3000:3000 -e CHOKIDAR_USEPOLLING=true frontend
+docker run -it --rm -v ${PWD}/src:/usr/app/src -v ${PWD}/public:/usr/app/public -p 3000:3000 -e CHOKIDAR_USEPOLLING=true frontend
 ```
