@@ -16,8 +16,11 @@ class UserList extends React.Component {
         if (response.status == 0) {
           this.setState({ userList: response.data });
         } else {
-          console.log(response.message);
+          this.setState({ errorMessage: response.message });
         }
+      })
+      .catch((err) => {
+        this.setState({ errorMessage: err.message });
       });
   }
   render() {
