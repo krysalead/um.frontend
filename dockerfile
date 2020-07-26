@@ -18,6 +18,9 @@ COPY ./public ./public
 
 RUN wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.14/swagger-codegen-cli-2.4.14.jar -O swagger-codegen-cli.jar
 
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
 EXPOSE 3000
 
 # start app

@@ -1,0 +1,227 @@
+{
+	"basePath": "/v1",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"User": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"firstName": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"lastName",
+				"firstName",
+				"email"
+			],
+			"type": "object"
+		},
+		"AddUserResponse": {
+			"properties": {
+				"status": {
+					"type": "number",
+					"format": "double"
+				},
+				"message": {
+					"type": "string"
+				},
+				"data": {
+					"$ref": "#/definitions/User"
+				}
+			},
+			"required": [
+				"status",
+				"message",
+				"data"
+			],
+			"type": "object"
+		},
+		"AddUserRequest": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"firstName": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"lastName",
+				"firstName",
+				"email"
+			],
+			"type": "object"
+		},
+		"ListUserResponse": {
+			"properties": {
+				"status": {
+					"type": "number",
+					"format": "double"
+				},
+				"message": {
+					"type": "string"
+				},
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/User"
+					}
+				}
+			},
+			"required": [
+				"status",
+				"message",
+				"data"
+			],
+			"type": "object"
+		}
+	},
+	"info": {
+		"title": "user-management-backend",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		}
+	},
+	"paths": {
+		"/user": {
+			"post": {
+				"operationId": "AddUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/AddUserResponse"
+						},
+						"examples": {
+							"application/json": {
+								"status": 0,
+								"message": "",
+								"data": {
+									"id": 1,
+									"lastName": "john",
+									"firstName": "Doe",
+									"email": "jdoe@yahoo.fr"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "addUserRequest",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AddUserRequest"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "ListUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ListUserResponse"
+						},
+						"examples": {
+							"application/json": {
+								"status": 0,
+								"message": "",
+								"data": [
+									{
+										"id": 1,
+										"lastName": "john",
+										"firstName": "Doe",
+										"email": "jdoe@yahoo.fr"
+									}
+								]
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/user/search/{searchFilter}": {
+			"get": {
+				"operationId": "SearchUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ListUserResponse"
+						},
+						"examples": {
+							"application/json": {
+								"status": 0,
+								"message": "",
+								"data": [
+									{
+										"id": 1,
+										"lastName": "john",
+										"firstName": "Doe",
+										"email": "jdoe@yahoo.fr"
+									}
+								]
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "searchFilter",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {
+		"jwt": {
+			"type": "apiKey",
+			"name": "jwt_token",
+			"in": "header",
+			"scopes": {}
+		}
+	},
+	"host": "localhost:4000"
+}
