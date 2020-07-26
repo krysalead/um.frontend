@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 # Generate Client Stub from Swagger, backend build should have been run first
 SWAGGER_FILE=src/swagger.json
-OUTPUT_DIR=frontend/api
-if [ ! -f "$SWAGGER_FILE"]; then
+OUTPUT_DIR=api
+if [ ! -f "$SWAGGER_FILE" ]; then
     echo "You need to run the backend swagger generation first, check the backend readme"
     exit -1
 fi
