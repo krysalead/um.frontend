@@ -22,7 +22,7 @@
     "jsx": "react",
     "noEmit": true
   },
-  "include": ["api/**/*.ts", "src/**/*.js"],
+  "include": ["api/**/*.ts"],
   "exclude": ["node_modules"],
   "compileOnSave": false
 }

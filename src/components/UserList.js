@@ -13,7 +13,7 @@ class UserList extends React.Component {
   headers = { lastName: "Last Name", firstName: "First Name", email: "Email" };
   constructor(props) {
     super(props);
-    this.state = { userList: [] };
+    this.state = { userList: props.users || [] };
   }
   filterList = (event) => {
     new DefaultApi(null, this.context.baseUrl)

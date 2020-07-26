@@ -69,14 +69,20 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Docker
 
-Build
+### install
+
+```
+./scripts/setup.sh
+```
+
+### Build
 
 ```
 docker build -t frontend .
 ```
 
-Run in
+### Run
 
 ```
-docker run -it --rm -v ${PWD}/src:/usr/app/src -v ${PWD}/public:/usr/app/public -p 3000:3000 -e CHOKIDAR_USEPOLLING=true frontend
+docker run -it --rm -v ${PWD}/src:/usr/app/src -v ${PWD}/public:/usr/app/public -v ${PWD}/api:/usr/app/api -p 3000:3000 -e CHOKIDAR_USEPOLLING=true frontend
 ```

@@ -10,6 +10,7 @@ ENV PATH /usr/app/node_modules/.bin:$PATH
 # install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
+COPY tsconfig.json ./
 RUN npm install
 # add app
 COPY ./src ./src
@@ -23,4 +24,4 @@ RUN chmod +x /wait
 EXPOSE 3000
 
 # start app
-CMD /wait && npm run tsc && npm test  && npm start
+CMD /wait && npm run tsc && npm start
