@@ -38,7 +38,7 @@ class UserList extends React.Component {
   };
   handleError(err) {
     // TODO propagate the error message
-    console.error(response.message);
+    console.error(err.message);
   }
   render() {
     const listUser = this.state.userList.map((user) => (
