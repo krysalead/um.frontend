@@ -9,6 +9,10 @@
   padding: 0.5em;
 }
 
-.App-link {
+a {
   color: #61dafb;
+}
+
+form {
+  margin: 0.5em;
 }
