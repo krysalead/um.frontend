@@ -10,7 +10,6 @@ ENV PATH /usr/app/node_modules/.bin:$PATH
 # install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
-COPY start.sh .
 RUN npm install
 # add app
 COPY ./src ./src
