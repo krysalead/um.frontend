@@ -10,12 +10,15 @@ ENV PATH /usr/app/node_modules/.bin:$PATH
 # install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
+COPY start.sh .
 RUN npm install
 # add app
 COPY ./src ./src
 COPY ./public ./public
 
+RUN wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.4.14/swagger-codegen-cli-2.4.14.jar -O swagger-codegen-cli.jar
+
 EXPOSE 3000
 
 # start app
-CMD ["npm", "start"]
+CMD start.sh

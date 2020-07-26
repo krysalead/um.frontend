@@ -1,0 +1,20 @@
+.user-display {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.user-display > div {
+  text-align: center;
+}
+
+.user-list-display {
+  margin: 1em;
+}
+
+.user-display:first-child {
+  font-weight: bold;
+  color: cornsilk;
+  background-color: grey;
+}
