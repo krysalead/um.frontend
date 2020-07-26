@@ -5,6 +5,7 @@ import "./AddUser.css";
 import { DefaultApi } from "../api/api";
 import { AppContext } from "../Context";
 import { useForm } from "react-hook-form";
+import { useAsyncError } from "../Utils";
 
 const buttonStyle = {
   margin: "1em",
@@ -15,16 +16,23 @@ const validEmailMessage = requiredMessage + " and should be a valid email";
 
 const AddUser = () => {
   const context = useContext(AppContext);
+  const throwError = useAsyncError();
   const { register, handleSubmit, errors } = useForm();
   const doAdd = (data) => {
     if (data) {
       new DefaultApi(null, context.baseUrl)
         .addUser(data)
         .then((response) => {
-          console.log(response);
+          if (response.status === 0) {
+            // TODO update the list with the new element
+            console.info(response.data);
+          } else {
+            console.error(response.message);
+            throw new Error(response.message);
+          }
         })
         .catch((err) => {
-          console.log(err.message);
+          throwError(err);
         });
     }
     return false;
@@ -42,7 +50,7 @@ const AddUser = () => {
             inputRef={register({ required: true })}
           />
           {errors.firstName && (
-            <FormHelperText error="true">{requiredMessage}</FormHelperText>
+            <FormHelperText error={true}>{requiredMessage}</FormHelperText>
           )}
         </FormControl>
         <FormControl>
@@ -54,7 +62,7 @@ const AddUser = () => {
             inputRef={register({ required: true })}
           />
           {errors.lastName && (
-            <FormHelperText error="true">{requiredMessage}</FormHelperText>
+            <FormHelperText error={true}>{requiredMessage}</FormHelperText>
           )}
         </FormControl>
         <FormControl>
@@ -69,7 +77,7 @@ const AddUser = () => {
             })}
           />
           {errors.email && (
-            <FormHelperText error="true">{validEmailMessage}</FormHelperText>
+            <FormHelperText error={true}>{validEmailMessage}</FormHelperText>
           )}
         </FormControl>
       </div>

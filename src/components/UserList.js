@@ -15,19 +15,30 @@ class UserList extends React.Component {
     super(props);
     this.state = { userList: [] };
   }
+  filterList = (event) => {
+    new DefaultApi(null, this.context.baseUrl)
+      .searchUser(event.target.value)
+      .then(this.handleReponse)
+      .catch(this.handleError);
+  };
   componentDidMount() {
     new DefaultApi(null, this.context.baseUrl)
       .listUser()
-      .then((response) => {
-        if (response.status === 0) {
-          this.setState({ userList: response.data });
-        } else {
-          this.setState({ errorMessage: response.message });
-        }
-      })
-      .catch((err) => {
-        this.setState({ errorMessage: err.message });
-      });
+      .then(this.handleReponse)
+      .catch(this.handleError);
+  }
+  // keep the scope of the method to this
+  handleReponse = (response) => {
+    if (response.status === 0) {
+      this.setState({ userList: response.data });
+    } else {
+      // TODO propagate the error message
+      console.error(response.message);
+    }
+  };
+  handleError(err) {
+    // TODO propagate the error message
+    console.error(response.message);
   }
   render() {
     const listUser = this.state.userList.map((user) => (
@@ -40,6 +51,7 @@ class UserList extends React.Component {
           label="Search..."
           variant="outlined"
           style={searchButtonStyle}
+          onChange={this.filterList}
         />
         <div className="user-list-display">
           <User user={this.headers} key={this.headers.email} />
