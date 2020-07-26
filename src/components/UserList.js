@@ -2,15 +2,17 @@ import React from "react";
 import User from "./User";
 import TextField from "@material-ui/core/TextField";
 import { DefaultApi } from "../api/api";
+import { AppContext } from "../Context";
 
 class UserList extends React.Component {
+  static contextType = AppContext;
   headers = { lastName: "Last Name", firstName: "First Name", email: "Email" };
   constructor(props) {
     super(props);
     this.state = { userList: [] };
   }
   componentDidMount() {
-    new DefaultApi(null, "http://localhost:4000/v1")
+    new DefaultApi(null, this.context.baseUrl)
       .listUser()
       .then((response) => {
         if (response.status == 0) {

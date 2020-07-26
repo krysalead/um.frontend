@@ -3,6 +3,7 @@ import "./App.css";
 import AddUser from "./components/AddUser";
 import UserList from "./components/UserList";
 import { AlertTitle, Alert } from "@material-ui/lab";
+import { AppContext, config } from "./Context";
 
 function App() {
   return (
@@ -12,8 +13,10 @@ function App() {
         <AlertTitle>Backend Error</AlertTitle>
         There is an error
       </Alert>
-      <AddUser />
-      <UserList />
+      <AppContext.Provider value={config}>
+        <AddUser />
+        <UserList />
+      </AppContext.Provider>
     </div>
   );
 }
