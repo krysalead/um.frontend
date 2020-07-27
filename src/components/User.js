@@ -1,5 +1,4 @@
 import React from "react";
-import "./User.css";
 
 const lastNameStyle = {
   width: "30%",
@@ -11,7 +10,7 @@ const emailStyle = {
   width: "40%",
 };
 
-function User(props) {
+const User = (props) => {
   if (props.user) {
     return (
       <div className="user-display">
@@ -23,6 +22,6 @@ function User(props) {
   } else {
     return "";
   }
-}
+};
 
 export default User;

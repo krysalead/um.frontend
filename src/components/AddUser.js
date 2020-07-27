@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { TextField, FormControl, FormHelperText } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import "./AddUser.css";
-import { DefaultApi } from "../api/api";
-import { AppContext } from "../Context";
 import { useForm } from "react-hook-form";
-import { useAsyncError } from "../Utils";
 
 const buttonStyle = {
   margin: "1em",
@@ -14,26 +11,11 @@ const buttonStyle = {
 const requiredMessage = "This field is required";
 const validEmailMessage = requiredMessage + " and should be a valid email";
 
-const AddUser = () => {
-  const context = useContext(AppContext);
-  const throwError = useAsyncError();
+const AddUser = (props) => {
   const { register, handleSubmit, errors } = useForm();
   const doAdd = (data) => {
     if (data) {
-      new DefaultApi(null, context.baseUrl)
-        .addUser(data)
-        .then((response) => {
-          if (response.status === 0) {
-            // TODO update the list with the new element
-            console.info(response.data);
-          } else {
-            console.error(response.message);
-            throw new Error(response.message);
-          }
-        })
-        .catch((err) => {
-          throwError(err);
-        });
+      props.onUserAdd(data);
     }
     return false;
   };

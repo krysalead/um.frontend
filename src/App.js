@@ -1,20 +1,15 @@
 import React from "react";
 import "./App.css";
-import AddUser from "./components/AddUser";
-import UserList from "./components/UserList";
-import { AppContext, config } from "./Context";
 import ErrorBoundary from "./ErrorBoundary";
+import MainView from "./view/MainView";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">User Management</header>
-      <AppContext.Provider value={config}>
-        <ErrorBoundary>
-          <AddUser />
-          <UserList />
-        </ErrorBoundary>
-      </AppContext.Provider>
+      <ErrorBoundary>
+        <MainView />
+      </ErrorBoundary>
     </div>
   );
 }
