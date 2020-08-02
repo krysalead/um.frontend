@@ -5,7 +5,7 @@ export const isPromise = (v) => {
 };
 
 export const useAsyncError = () => {
-  const [_, setError] = React.useState();
+  const [setError] = React.useState();
   return React.useCallback(
     (e) => {
       setError(() => {

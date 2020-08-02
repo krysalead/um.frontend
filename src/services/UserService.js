@@ -3,7 +3,7 @@ import { BASE_URL } from "../constants/AppConfig";
 
 const UserApi = {
   searchUser(searchTerms) {
-    if (searchTerms != "") {
+    if (searchTerms !== "") {
       return new DefaultApi(null, BASE_URL)
         .searchUser(searchTerms)
         .then(this.handleReponse)
