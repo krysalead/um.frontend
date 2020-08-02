@@ -24,4 +24,4 @@ RUN chmod +x /wait
 EXPOSE 3000
 
 # start app
-CMD /wait && npm run tsc && npm start
+CMD /wait && npm run tsc && npm test && npm start
